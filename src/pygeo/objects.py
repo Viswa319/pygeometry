@@ -58,33 +58,37 @@ class Vector:
 
 class Ray:
     """A ray."""
-    def __init__(self, ray):
-        self._ray = np.array(ray, dtype=float)
+    def __init__(self, origin,direction):
+        self._origin = np.array(origin ,dtype = float)
+        if np.linalg.norm(np.array(direction,dtype=float)) == 0:
+            self._direction = np.array(direction,dtype=float)
+        else:
+            self._direction = np.array(direction,dtype = float)/np.linalg.norm(np.array(direction,dtype=float))
+
 
     def __repr__(self):
-        return f"Ray({self._point.tolist()})"
+        return f"Ray(Origin:({self._origin.tolist()}),Direction:({self._direction.tolist()}))"
 
     def __eq__(self, other):
         if isinstance(other, Ray):
-            return np.array_equal(other._ray, self._ray)
+            return np.array_equal(other._origin, self._origin) and np.array_equal(other._direction, self._direction)
         return False
 
 
 class Sphere:
     """A sphere."""
 
-    def __init__(self, sphere):
-        self._sphere = np.array(sphere, dtype=float)
+    def __init__(self, Center,Radius ):
+        self._center = np.array(Center,dtype=float)
+        self._radius = np.array(Radius, dtype = float)
 
     def __repr__(self):
-        return f"Sphere({self._point.tolist()})"
+        return f"Sphere(Center:({self._center.tolist()}),Radius:({self._radius.tolist()}))"
 
     def __eq__(self, other):
         if isinstance(other, Sphere):
-            return np.array_equal(other._sphere, self._sphere)
+            return np.array_equal(other._center, self._center) and np.array_equal(other._radius, self._radius)
         return False
-
-
 class Triangle:
     """A triangle."""
 
@@ -92,9 +96,10 @@ class Triangle:
         self._triangle = np.array(triangle, dtype=float)
 
     def __repr__(self):
-        return f"Triangle({self._point.tolist()})"
+        return f"Triangle({self._triangle.tolist()})"
 
     def __eq__(self, other):
         if isinstance(other, Triangle):
             return np.array_equal(other._triangle, self._triangle)
         return False
+print(Sphere((0,1)))
