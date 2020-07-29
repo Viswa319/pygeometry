@@ -95,3 +95,5 @@ class Sphere:
         if isinstance(other, Sphere):
             return np.array_equal(other._center, self._center) and np.array_equal(other._radius, self._radius)
         return False    
+class Triangle:
+    ...
