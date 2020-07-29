@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class Point:
     """A point."""
 
@@ -30,7 +29,6 @@ class Point:
             return np.array_equal(other._point, self._point)
         return False
 
-
 class Vector:
     """A vector."""
 
@@ -57,7 +55,11 @@ class Vector:
 
 
 class Ray:
-    """A ray."""
+    """Class Ray \\
+    Inputs (2): Origin(origin point of a ray, which is an array of the form (x,y,z), where x,y,z belongs to R), 
+             \\ 
+     Direction(direction vector of a ray, which is an array of the form (x ,y ,z), where x,y,z belongs to R)   
+    Methods: Equality between two rays"""
     def __init__(self, origin,direction):
         self._origin = np.array(origin ,dtype = float)
         if np.linalg.norm(np.array(direction,dtype=float)) == 0:
@@ -76,7 +78,11 @@ class Ray:
 
 
 class Sphere:
-    """A sphere."""
+    """Class Sphere \\
+    Inputs (2): Center(center point of a sphere, which is an array of the form (x,y,z), where x,y,z belongs to R), 
+             \\ 
+     Radius(Radius of a sphere, which is a non-negative real number)   
+    Methods: Equality between two spheres"""
 
     def __init__(self, Center,Radius ):
         self._center = np.array(Center,dtype=float)
@@ -88,18 +94,4 @@ class Sphere:
     def __eq__(self, other):
         if isinstance(other, Sphere):
             return np.array_equal(other._center, self._center) and np.array_equal(other._radius, self._radius)
-        return False
-class Triangle:
-    """A triangle."""
-
-    def __init__(self, triangle):
-        self._triangle = np.array(triangle, dtype=float)
-
-    def __repr__(self):
-        return f"Triangle({self._triangle.tolist()})"
-
-    def __eq__(self, other):
-        if isinstance(other, Triangle):
-            return np.array_equal(other._triangle, self._triangle)
-        return False
-print(Sphere((0,1)))
+        return False    
